@@ -20,12 +20,14 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
   test:
+    needs: setup
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - name: Run Playwright tests
       run: npx playwright test
   publish:
+    needs: [setup, test]
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
