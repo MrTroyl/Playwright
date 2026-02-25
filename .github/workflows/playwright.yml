@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
-  test:
+  setup:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -19,8 +19,16 @@ jobs:
       run: npm install playwright-ctrf-json-reporter --save-dev
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
     - name: Run Playwright tests
       run: npx playwright test
+  publish:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
@@ -39,4 +47,4 @@ jobs:
         upload-artifact: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: always()
+    if: always()
