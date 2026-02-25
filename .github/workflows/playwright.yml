@@ -25,5 +25,9 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-    - name: Publish Test Summary Results
-      run: npx github-actions-ctrf ctrf/ctrf-report.json
+    - name: Publish Test Report
+      uses: ctrf-io/github-test-reporter@v1
+      with:
+        report-path: './ctrf/*.json'
+        github-report: true
+      if: always()
