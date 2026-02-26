@@ -4,8 +4,6 @@ var valid_user: string = "standard_user";
 var invalid_user: string = "locked_out_user";
 var password: string = "secret_sauce";
 
-test.use({  screenshot: 'only-on-failure', });
-
 test('go to checkout', async ({ page, loginPage }) => {
   //login
   await loginPage.goToPage();
@@ -28,5 +26,5 @@ test('go to checkout', async ({ page, loginPage }) => {
 test('blocked user', async ({ page, loginPage }) => {
   await loginPage.goToPage();
   await loginPage.login(invalid_user, password);
-  await expect(page.locator('[data-test="error"]')).toContainText('Epic sadface: Sorry, this user has been locked out.');
+  await expect(page.locator('[data-test="error"]')).toContainText('Epic dupa sadface: Sorry, this user has been locked out.');
 });
