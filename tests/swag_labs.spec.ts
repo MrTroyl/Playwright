@@ -26,5 +26,5 @@ test('go to checkout', async ({ page, loginPage }) => {
 test('blocked user', async ({ page, loginPage }) => {
   await loginPage.goToPage();
   await loginPage.login(invalid_user, password);
-  await expect(page.locator('[data-test="error"]')).toContainText('Epic dupa sadface: Sorry, this user has been locked out.');
+  await expect(page.locator('[data-test="error"]')).toContainText('Epic sadface: Sorry, this user has been locked out.');
 });
